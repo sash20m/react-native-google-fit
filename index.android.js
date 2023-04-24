@@ -56,7 +56,7 @@ class RNGoogleFit {
     }
   }
 
-  userToken = async () => {
+  getUserToken = async () => {
     return await googleFit.getUserToken()
   }
 

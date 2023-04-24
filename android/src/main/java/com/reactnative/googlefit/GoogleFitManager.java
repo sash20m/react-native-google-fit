@@ -134,8 +134,6 @@ public class GoogleFitManager implements ActivityEventListener {
 
     public String getUserToken() {
         String idToken = GoogleSignIn.getLastSignedInAccount(mReactContext).getIdToken();
-        // WritableMap map = Arguments.createMap();
-        // map.putString("client", "" + mIdToken);
         return idToken;
     }
 
