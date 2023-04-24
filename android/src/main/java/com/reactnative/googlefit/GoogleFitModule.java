@@ -117,10 +117,11 @@ public class GoogleFitModule extends ReactContextBaseJavaModule implements Lifec
     }
 
     @ReactMethod
-    public void disconnect(Promise promise) {
+    public String disconnect(Promise promise) {
         try {
             if (mGoogleFitManager != null) {
-                mGoogleFitManager.disconnect(getCurrentActivity());
+                String token = mGoogleFitManager.disconnect(getCurrentActivity());
+                return token;
             }
             promise.resolve(null);
         } catch (Exception e) {

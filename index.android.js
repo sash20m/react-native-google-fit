@@ -66,9 +66,10 @@ class RNGoogleFit {
   }
 
   disconnect = () => {
-    this.isAuthorized = false
-    googleFit.disconnect()
-    this.removeListeners()
+    // this.isAuthorized = false;
+    const token = googleFit.disconnect()
+    // this.removeListeners()
+    return token;
   }
 
   removeListeners = () => {
