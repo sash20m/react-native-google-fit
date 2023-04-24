@@ -8,7 +8,7 @@ declare module 'react-native-google-fit' {
 
     checkIsAuthorized: () => Promise<void>
 
-    disconnect(): string
+    disconnect(): string | void
 
     removeListeners: () => void
 

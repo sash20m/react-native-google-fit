@@ -65,9 +65,9 @@ class RNGoogleFit {
     this.isAuthorized = isAuthorized
   }
 
-  disconnect = () => {
+  disconnect = async () => {
     // this.isAuthorized = false;
-    const token = googleFit.disconnect()
+    const token = await googleFit.disconnect()
     // this.removeListeners()
     return token;
   }
