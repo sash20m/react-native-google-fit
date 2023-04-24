@@ -168,7 +168,7 @@ public class GoogleFitManager implements ActivityEventListener {
 
                                 mIdToken = GoogleSignIn.getLastSignedInAccount(mReactContext).getIdToken();
                                 WritableMap map = Arguments.createMap();
-                                map.putString("client", mIdToken);
+                                map.putString("client", "" + mIdToken);
 
                                 sendEvent(mReactContext, "GoogleFitAuthorizeSuccess", mIdToken);
                             }
