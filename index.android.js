@@ -56,6 +56,10 @@ class RNGoogleFit {
     }
   }
 
+  userToken = async () => {
+    return await googleFit.getUserToken()
+  }
+
   checkIsAuthorized = async () => {
     const { isAuthorized } = await googleFit.isAuthorized()
     this.isAuthorized = isAuthorized

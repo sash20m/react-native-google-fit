@@ -132,23 +132,15 @@ public class GoogleFitManager implements ActivityEventListener {
 
     public SleepHistory getSleepHistory() { return sleepHistory; }
 
+    public String getUserToken() {
+        String idToken = GoogleSignIn.getLastSignedInAccount(mReactContext).getIdToken();
+        // WritableMap map = Arguments.createMap();
+        // map.putString("client", "" + mIdToken);
+        return idToken;
+    }
+
     public void authorize(ArrayList<String> userScopes) {
         final ReactContext mReactContext = this.mReactContext;
-
-
-//    reserve to replace deprecated Api in the future
-//        GoogleSignInOptions.Builder optionsBuilder =
-//                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                        .requestEmail()
-//                        .requestProfile();
-//
-//        for (String scopeName : userScopes) {
-//            optionsBuilder.requestScopes(new Scope(scopeName));
-//        }
-//
-//        mSignInClient = GoogleSignIn.getClient(this.mActivity, optionsBuilder.build());
-//        Intent intent = mSignInClient.getSignInIntent();
-//        this.mActivity.startActivityForResult(intent, REQUEST_OAUTH);
 
         GoogleApiClient.Builder apiClientBuilder = new GoogleApiClient.Builder(mReactContext.getApplicationContext())
                 .addApi(Fitness.SENSORS_API)
@@ -166,12 +158,7 @@ public class GoogleFitManager implements ActivityEventListener {
                             @Override
                             public void onConnected(@Nullable Bundle bundle) {
                                 Log.i(TAG, "Authorization - Connected");
-
-                                mIdToken = GoogleSignIn.getLastSignedInAccount(mReactContext).getIdToken();
-                                WritableMap map = Arguments.createMap();
-                                map.putString("client", "" + mIdToken);
-
-                                sendEvent(mReactContext, "GoogleFitAuthorizeSuccess", map);
+                                sendEvent(mReactContext, "GoogleFitAuthorizeSuccess", null);
                             }
 
                             @Override
@@ -213,6 +200,8 @@ public class GoogleFitManager implements ActivityEventListener {
 
         mApiClient.connect();
     }
+
+
 
     public void  disconnect(Context context) {
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
