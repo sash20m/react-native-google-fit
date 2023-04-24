@@ -135,7 +135,6 @@ public class GoogleFitManager implements ActivityEventListener {
     public void authorize(ArrayList<String> userScopes) {
         final ReactContext mReactContext = this.mReactContext;
 
-    this.disconnect(mReactContext);
 
 //    reserve to replace deprecated Api in the future
 //        GoogleSignInOptions.Builder optionsBuilder =
