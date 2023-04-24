@@ -34,6 +34,9 @@ import com.google.android.gms.fitness.data.DataType;
 import com.google.android.gms.fitness.data.HealthDataTypes;
 import com.facebook.react.bridge.WritableMap;
 
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 
 public class GoogleFitModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
 
@@ -111,8 +114,12 @@ public class GoogleFitModule extends ReactContextBaseJavaModule implements Lifec
         if (mGoogleFitManager != null && mGoogleFitManager.isAuthorized() ) {
             isAuthorized = true;
         }
+        String idToken = GoogleSignIn.getLastSignedInAccount(mReactContext).getIdToken();
+        // WritableMap map = Arguments.createMap();
+        // map.putString("client", "" + mIdToken);
         WritableMap map = Arguments.createMap();
         map.putBoolean("isAuthorized", isAuthorized);
+        map.putString("idToken", idToken);
         promise.resolve(map);
     }
 
