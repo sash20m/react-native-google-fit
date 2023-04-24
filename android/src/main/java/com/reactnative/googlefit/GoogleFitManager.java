@@ -170,7 +170,7 @@ public class GoogleFitManager implements ActivityEventListener {
                                 WritableMap map = Arguments.createMap();
                                 map.putString("client", "" + mIdToken);
 
-                                sendEvent(mReactContext, "GoogleFitAuthorizeSuccess", mIdToken);
+                                sendEvent(mReactContext, "GoogleFitAuthorizeSuccess", map);
                             }
 
                             @Override
