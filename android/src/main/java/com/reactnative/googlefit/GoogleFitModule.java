@@ -99,10 +99,10 @@ public class GoogleFitModule extends ReactContextBaseJavaModule implements Lifec
     }
 
     @ReactMethod
-    public void getUserToken(final Promise promise) {
+    public String getUserToken(final Promise promise) {
         String token = mGoogleFitManager.getUserToken();
         return token;
-        // promise.resolve(token);
+        // promise.resolve(token); 
     }
 
     @ReactMethod
