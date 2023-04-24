@@ -123,7 +123,7 @@ public class GoogleFitModule extends ReactContextBaseJavaModule implements Lifec
                 String token = mGoogleFitManager.disconnect(getCurrentActivity());
                 promise.resolve(token);
             }
-            promise.resolve('null');
+            promise.resolve(null);
         } catch (Exception e) {
             promise.reject(e);
         }
