@@ -30,9 +30,10 @@ class RNGoogleFit {
         return successResponse
       }
       const authResult = await new Promise((resolve, reject) => {
-        this.onAuthorize(() => {
+        this.onAuthorize((data) => {
+          console.log(data, " e?")
           this.isAuthorized = true
-          resolve(successResponse)
+          resolve({successResponse, data})
         })
         this.onAuthorizeFailure(error => {
           this.isAuthorized = false

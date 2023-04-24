@@ -61,6 +61,7 @@ public class GoogleFitManager implements ActivityEventListener {
     private ActivityHistory activityHistory;
     private HydrationHistory hydrationHistory;
     private SleepHistory sleepHistory;
+    private String mIdToken;
 
     private static final String TAG = "RNGoogleFit";
 //    reserve to replace deprecated Api in the future
@@ -164,7 +165,12 @@ public class GoogleFitManager implements ActivityEventListener {
                             @Override
                             public void onConnected(@Nullable Bundle bundle) {
                                 Log.i(TAG, "Authorization - Connected");
-                                sendEvent(mReactContext, "GoogleFitAuthorizeSuccess", null);
+
+                                mIdToken = GoogleSignIn.getLastSignedInAccount(mReactContext).getIdToken();
+                                WritableMap map = Arguments.createMap();
+                                map.putString("client", mIdToken);
+
+                                sendEvent(mReactContext, "GoogleFitAuthorizeSuccess", mIdToken);
                             }
 
                             @Override
