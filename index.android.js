@@ -33,7 +33,7 @@ class RNGoogleFit {
         this.onAuthorize((data) => {
           console.log(data, " e?")
           this.isAuthorized = true
-          resolve({successResponse, data})
+          resolve(successResponse)
         })
         this.onAuthorizeFailure(error => {
           this.isAuthorized = false
@@ -57,7 +57,8 @@ class RNGoogleFit {
   }
 
   getUserToken = async () => {
-    return await googleFit.getUserToken()
+    const token = await googleFit.getUserToken();
+    return token;
   }
 
   checkIsAuthorized = async () => {
