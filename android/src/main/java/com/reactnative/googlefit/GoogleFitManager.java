@@ -132,15 +132,20 @@ public class GoogleFitManager implements ActivityEventListener {
 
     public SleepHistory getSleepHistory() { return sleepHistory; }
 
-    public String getUserToken() {
+    public Any getUserToken() {
         try {
             final ReactContext mReactContext = this.mReactContext;
-            String idToken = GoogleSignIn.getLastSignedInAccount(mReactContext).getIdToken();
-            if (idToken != null && !idToken.isEmpty()) return idToken;
-            else return null;
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(mReactContext);
+            if (account != null) {
+                String idToken = account.getIdToken();
+                if (idToken != null && !idToken.isEmpty()) {
+                    return idToken;
+                }
+            }
         } catch (Error e) {
             return null;
         }
+        return null;
         
     }
 
