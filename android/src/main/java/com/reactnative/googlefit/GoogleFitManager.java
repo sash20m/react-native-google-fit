@@ -132,7 +132,7 @@ public class GoogleFitManager implements ActivityEventListener {
 
     public SleepHistory getSleepHistory() { return sleepHistory; }
 
-    public Any getUserToken() {
+    public String getUserToken() {
         try {
             final ReactContext mReactContext = this.mReactContext;
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(mReactContext);
