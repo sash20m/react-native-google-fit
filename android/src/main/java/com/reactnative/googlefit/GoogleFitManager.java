@@ -133,9 +133,14 @@ public class GoogleFitManager implements ActivityEventListener {
     public SleepHistory getSleepHistory() { return sleepHistory; }
 
     public String getUserToken() {
-        final ReactContext mReactContext = this.mReactContext;
-        String idToken = GoogleSignIn.getLastSignedInAccount(mReactContext).getIdToken();
-        return idToken;
+        try {
+            final ReactContext mReactContext = this.mReactContext;
+            String idToken = GoogleSignIn.getLastSignedInAccount(mReactContext).getIdToken();
+            return idToken;
+        } catch (Error e) {
+            promise.reject(e);
+        }
+        
     }
 
     public void authorize(ArrayList<String> userScopes) {
