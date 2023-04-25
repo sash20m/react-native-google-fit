@@ -136,9 +136,10 @@ public class GoogleFitManager implements ActivityEventListener {
         try {
             final ReactContext mReactContext = this.mReactContext;
             String idToken = GoogleSignIn.getLastSignedInAccount(mReactContext).getIdToken();
-            return idToken;
+            if (idToken != null && !idToken.isEmpty()) return idToken;
+            else return null;
         } catch (Error e) {
-            promise.reject(e);
+            return null;
         }
         
     }
