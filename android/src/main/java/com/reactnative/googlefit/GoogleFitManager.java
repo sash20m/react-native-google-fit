@@ -152,6 +152,20 @@ public class GoogleFitManager implements ActivityEventListener {
     public void authorize(ArrayList<String> userScopes) {
         final ReactContext mReactContext = this.mReactContext;
 
+        // reserve to replace deprecated Api in the future
+        // GoogleSignInOptions.Builder optionsBuilder =
+        //         new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        //                .requestEmail()
+        //                .requestProfile();
+
+        // for (String scopeName : userScopes) {
+        //     optionsBuilder.requestScopes(new Scope(scopeName));
+        // }
+
+        // mSignInClient = GoogleSignIn.getClient(this.mActivity, optionsBuilder.build());
+        // Intent intent = mSignInClient.getSignInIntent();
+        // this.mActivity.startActivityForResult(intent, REQUEST_OAUTH);
+
         GoogleApiClient.Builder apiClientBuilder = new GoogleApiClient.Builder(mReactContext.getApplicationContext())
                 .addApi(Fitness.SENSORS_API)
                 .addApi(Fitness.HISTORY_API)
